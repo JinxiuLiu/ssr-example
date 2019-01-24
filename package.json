@@ -4,9 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "build:client": "vue-cli-service build",
+    "build:server": "cross-env WEBPACK_TARGET=node vue-cli-service build --mode server",
+    "build:win": "npm run build:server && move dist\\vue-ssr-server-bundle.json bundle && npm run build:client && move bundle dist\\vue-ssr-server-bundle.json"
   },
   "dependencies": {
+    "es6-promise": "^4.2.5",
+    "koa": "^2.6.2",
+    "koa-static": "^5.0.0",
     "vue": "^2.5.21",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
@@ -14,8 +20,12 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.3.0",
     "@vue/cli-service": "^3.3.0",
+    "cross-env": "^5.2.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.21"
+    "lodash.merge": "^4.6.1",
+    "vue-server-renderer": "^2.5.22",
+    "vue-template-compiler": "^2.5.21",
+    "webpack-node-externals": "^1.7.2"
   }
 }
